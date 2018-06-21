@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Chat Javascript FullStack</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+</head>
+<body>
+    <nav class="navbar navbar-light bg-warning">
+        <a href="/" class="navbar-brand mx-auto">Javascript FullStack Chat</a>
+    </nav>
+    <div class="container">
+        <div class="col-md-6 mt-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Let's Chat</h4>
+                </div>
+                <div id="chat" class="card-body"></div>
+                <form id="message-form" class="card-footer">
+                    <div class="input-group">
+                        <input type="text" id="message" class="form-control">
+                        <div class="input-group-append">
+                            <input type="submit" class="btn btn-warning">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
