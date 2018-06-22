@@ -17,6 +17,7 @@ $(function () {
         e.preventDefault();
         socket.emit('new user', $nickname.val(), data => {
             if(data) {
+                console.log('****', $nickname.val());
                 $('#nickWrap').hide();
                 $('#contentWrap').show();
             } else {
@@ -36,7 +37,10 @@ $(function () {
         console.log('sending data');
         // $messageBox.val(); //este es el dato que voy a enviar al servidor y el servidor
         //se encargara de retrasnmitirlo a los demas usuarios
-        socket.emit('send:message', $messageBox.val());
+        socket.emit('send:message', $messageBox.val(), data => {
+            //callback que se quedara escuchando despues de un evento
+            $chat.append(`<p class="error">${data}</p>`)
+        });
         $messageBox.val('');
     });
 
@@ -51,6 +55,20 @@ $(function () {
         }
         $users.html(html);
     });
+
+    socket.on('whisper', data => {
+        $chat.append(`<p class="whisper"><b>${data.nick}:</b> ${data.msg}</p>`);
+    })
+
+    socket.on('load old msgs', msgs => {
+        for (let i=0; i < msgs.length; i++) {
+            displayMsg(msgs[i]);
+        }
+    });
+
+    function displayMsg(data) {
+        $chat.append(`<p class="whisper"><b>${data.nick}:</b> ${data.msg}</p>`);
+    }
 })
 
 

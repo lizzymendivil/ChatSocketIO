@@ -6,11 +6,17 @@ const socketio = require('socket.io'); //modulo que permite hacer conexion en ti
 //este modulo funciona encima de un servidor
 //primero ya tiene que haber un servidor
 
+const mongoose = require('mongoose');
 
 const app = express(); //ejecutamos express y devuelve un objeto con opciones de funciones de express
 
 const server = http.createServer(app);
 const io = socketio.listen(server); //devuelve una conexion socket
+
+//db connection
+mongoose.connect('mongodb://localhost/chat-database')
+    .then(db => console.log('db is connected'))
+    .catch(err => console.log(err));
 
 //settings
 app.set('port', process.env.PORT || 3000);
